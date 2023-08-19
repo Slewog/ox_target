@@ -3,6 +3,9 @@
   "toggle_front_passenger_door": "Porte passager avant",
   "toggle_rear_driver_door": "Porte conducteur arrière",
   "toggle_rear_passenger_door": "Porte passager arrière",
+  "seat_rear_driver":"S'asseoir derrière le conducteur",
+  "seat_rear_passenger":"S'asseoir derrière le passager",
+  
   "toggle_hood": "Capot",
   "toggle_trunk": "Coffre",
   "debug_box": "(Debug) Box",

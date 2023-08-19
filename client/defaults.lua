@@ -78,6 +78,25 @@ api.addGlobalVehicle({
         end
     },
     {
+        name = 'ox_target:seatDriverR',
+        icon = 'fa-solid fa-person-walking-arrow-right',
+        label = locale('seat_rear_driver'),
+        bones = {'seat_dside_r'},
+        canInteract = function(entity, distance, coords, name)
+            if distance > 0.9 then return false end
+            if GetVehicleDoorLockStatus(entity) == 2 then return false end
+
+            return GetEntityBoneIndexByName(entity, 'door_dside_r') ~= -1 and (IsVehicleSeatFree(entity, 2) or IsVehicleSeatFree(entity, 1))
+        end,
+        onSelect = function(data)
+            if IsVehicleSeatFree(data.entity, 1) then
+                TaskEnterVehicle(PlayerPedId(), data.entity, 10000, 1, 1.0, 1, 0)
+            else
+                TaskEnterVehicle(PlayerPedId(), data.entity, 10000, 2, 1.0, 1, 0)
+            end
+        end
+    },
+    {
         name = 'ox_target:passengerR',
         icon = 'fa-solid fa-car-side',
         label = locale('toggle_rear_passenger_door'),
@@ -95,6 +114,25 @@ api.addGlobalVehicle({
         end,
         onSelect = function(data)
             toggleDoor(data.entity, 3)
+        end
+    },
+    {
+        name = 'ox_target:seatPassengerR',
+        icon = 'fa-solid fa-person-walking-arrow-right',
+        label = locale('seat_rear_passenger'),
+        bones = {'seat_pside_r'},
+        canInteract = function(entity, distance, coords, name)
+            if distance > 0.9 then return false end
+            if GetVehicleDoorLockStatus(entity) == 2 then return end
+
+            return GetEntityBoneIndexByName(entity, 'door_pside_r') ~= 1 and (IsVehicleSeatFree(entity, 2) or IsVehicleSeatFree(entity, 1))
+        end,
+        onSelect = function(data)
+            if IsVehicleSeatFree(data.entity, 2) then
+                TaskEnterVehicle(PlayerPedId(), data.entity, 10000, 2, 1.0, 1, 0)
+            else
+                TaskEnterVehicle(PlayerPedId(), data.entity, 10000, 1, 1.0, 1, 0)
+            end
         end
     },
     {
