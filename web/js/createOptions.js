@@ -1,4 +1,7 @@
 import { fetchNui } from "./fetchNui.js";
+var r = document.querySelector(':root');
+var rs = getComputedStyle(r);
+var iconColor = rs.getPropertyValue('--color-extra-hover');
 
 const optionsWrapper = document.getElementById("options-wrapper");
 
@@ -16,7 +19,8 @@ export function createOptions(type, data, id, zoneId) {
 
   const option = document.createElement("div");
   const iconElement = `<i class="fa-fw ${data.icon} option-icon" ${
-    data.iconColor ? `style = color:${data.iconColor} !important` : null
+    // data.iconColor ? `style = color:${data.iconColor} !important` : null
+    data.iconColor ? `style = color:${data.iconColor} !important` : `style = color:${iconColor} !important`
   }"></i>`;
 
   option.innerHTML = `${iconElement}<p class="option-label">${data.label}</p>`;
